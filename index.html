@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Hoja de Vida</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <img src="imagenes/imagen.jpg" alt="Foto de perfil">
+        <h1>Maria Camila Murcia</h1>
+        <h3>Desarrolladora Web</h3>
+    </header>
+
+    <section>
+        <h2>Presentación</h2>
+        <p>
+            Soy una persona responsable, proactiva y con gran interés en el aprendizaje continuo.
+            Me apasiona la tecnología y el desarrollo web.
+        </p>
+    </section>
+
+    <section>
+        <h2>Formación Académica</h2>
+        <ul>
+            <li>Desarrollo de Software – Universidad Santiago de Cali (en curso)</li>
+            <li>Bachiller Académico – Colegio Maria Auxiliadora 2022</li>
+        </ul>
+    </section>
+
+    <!-- ================= HISTORIA LABORAL ================= -->
+    <section>
+        <h2>Historia Laboral</h2>
+
+        <ul id="jobsList">
+            <li>
+                <strong>Desarrollador Junior – Empresa Tech (2023 - Actualidad)</strong>
+                <p>Desarrollo y mantenimiento de sitios web.</p>
+            </li>
+        </ul>
+
+        <h3>Agregar Nuevo Empleo</h3>
+        <form id="formJob">
+            <input type="text" id="jobTitle" placeholder="Cargo">
+            <input type="text" id="jobCompany" placeholder="Empresa">
+            <input type="text" id="jobDesc" placeholder="Descripción">
+            <button type="submit">Agregar</button>
+        </form>
+    </section>
+
+    <!-- ================= HABILIDADES ================= -->
+    <section>
+        <h2>Habilidades e Idiomas</h2>
+
+        <ul id="skillsList">
+            <li>HTML y CSS</li>
+            <li>JavaScript básico</li>
+            <li>Trabajo en equipo</li>
+            <li>Inglés: B1</li>
+            <li>Español: Nativo</li>
+        </ul>
+
+        <h3>Agregar Nueva Habilidad</h3>
+        <form id="formSkill">
+            <input type="text" id="skillInput" placeholder="Nueva habilidad">
+            <button type="submit">Agregar</button>
+        </form>
+    </section>
+
+<script>
+
+// ================= HABILIDADES =================
+const formSkill = document.getElementById("formSkill");
+const skillInput = document.getElementById("skillInput");
+const skillList = document.getElementById("skillsList");
+
+formSkill.addEventListener("submit", function(e){
+    e.preventDefault();
+
+    if(skillInput.value.trim() === "") return;
+
+    const li = document.createElement("li");
+    const span = document.createElement("span");
+    const btn = document.createElement("button");
+
+    span.textContent = skillInput.value;
+    btn.textContent = "Eliminar";
+
+    li.appendChild(span);
+    li.appendChild(btn);
+    skillList.appendChild(li);
+
+    btn.addEventListener("click", function(){
+        skillList.removeChild(li);
+    });
+
+    skillInput.value = "";
+});
+
+
+// ================= EMPLEOS =================
+const formJob = document.getElementById("formJob");
+const jobTitle = document.getElementById("jobTitle");
+const jobCompany = document.getElementById("jobCompany");
+const jobDesc = document.getElementById("jobDesc");
+const jobList = document.getElementById("jobsList");
+
+formJob.addEventListener("submit", function(e){
+    e.preventDefault();
+
+    if(jobTitle.value.trim() === "" || jobCompany.value.trim() === "") return;
+
+    const li = document.createElement("li");
+    const strong = document.createElement("strong");
+    const p = document.createElement("p");
+    const btn = document.createElement("button");
+
+    strong.textContent = jobTitle.value + " – " + jobCompany.value;
+    p.textContent = jobDesc.value;
+    btn.textContent = "Eliminar";
+
+    li.appendChild(strong);
+    li.appendChild(p);
+    li.appendChild(btn);
+    jobList.appendChild(li);
+
+    btn.addEventListener("click", function(){
+        jobList.removeChild(li);
+    });
+
+    jobTitle.value = "";
+    jobCompany.value = "";
+    jobDesc.value = "";
+});
+
+</script>
+
+</body>
+</html>
+
+
